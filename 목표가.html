@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>주식 목표수익 계산기</title>
+
+<style>
+*{box-sizing:border-box;}
+body{
+    margin:0;
+    background:#f2f2f7;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+.container{
+    max-width:480px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+h2{
+    text-align:center;
+    margin-top:0;
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:12px 0;
+}
+
+label{
+    width:40%;
+    font-weight:bold;
+}
+
+input{
+    width:58%;
+    padding:12px;
+    font-size:18px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    text-align:right;
+}
+
+.result{
+    background:#FFF9C4;
+    padding:12px;
+    border-radius:10px;
+    margin-top:15px;
+}
+
+.result div{
+    display:flex;
+    justify-content:space-between;
+    padding:6px 0;
+    font-size:18px;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    border:none;
+    background:#ff3b30;
+    color:white;
+    font-size:18px;
+    border-radius:10px;
+}
+
+.small{
+    font-size:13px;
+    color:#666;
+    text-align:center;
+    margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h2>📈 목표 수익 계산기</h2>
+
+<div class="row">
+<label>구매단가</label>
+<input id="buyPrice" inputmode="numeric">
+</div>
+
+<div class="row">
+<label>수량</label>
+<input id="qty" inputmode="numeric">
+</div>
+
+<div class="row">
+<label>목표수익</label>
+<input id="profit" inputmode="numeric">
+</div>
+
+<div class="row">
+<label>매도수수료(%)</label>
+<input id="fee" value="0.015">
+</div>
+
+<div class="row">
+<label>거래세(%)</label>
+<input id="tax" value="0.15">
+</div>
+
+<div class="result">
+
+<div>
+<span>수익률</span>
+<b id="rate">0%</b>
+</div>
+
+<div>
+<span>목표 매도가</span>
+<b id="price1">0원</b>
+</div>
+
+<div>
+<span>세금/수수료 포함</span>
+<b id="price2">0원</b>
+</div>
+
+</div>
+
+<button onclick="resetAll()">입력값 초기화</button>
+
+<div class="small">
+입력값은 자동 저장됩니다.
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const ids=["buyPrice","qty","profit","fee","tax"];
+
+ids.forEach(id=>{
+    const v=localStorage.getItem(id);
+    if(v) document.getElementById(id).value=v;
+
+    document.getElementById(id).addEventListener("input",()=>{
+        save(id);
+        calc();
+    });
+});
+
+function save(id){
+    localStorage.setItem(id,document.getElementById(id).value.replace(/,/g,""));
+}
+
+function num(id){
+    return Number(document.getElementById(id).value.replace(/,/g,""))||0;
+}
+
+function formatInput(e){
+    let v=e.target.value.replace(/,/g,"");
+    if(v=="") return;
+    e.target.value=Number(v).toLocaleString();
+}
+
+["buyPrice","qty","profit"].forEach(id=>{
+    document.getElementById(id).addEventListener("blur",formatInput);
+});
+
+function calc(){
+
+let buy=num("buyPrice");
+let qty=num("qty");
+let profit=num("profit");
+
+let fee=num("fee")/100;
+let tax=num("tax")/100;
+
+if(!buy||!qty)return;
+
+let rate=profit/(buy*qty)*100;
+
+let target=buy+(profit/qty);
+
+let gross=(buy*qty+profit)/(qty*(1-fee-tax));
+
+document.getElementById("rate").innerText=rate.toFixed(2)+" %";
+document.getElementById("price1").innerText=Math.round(target).toLocaleString()+"원";
+document.getElementById("price2").innerText=Math.round(gross).toLocaleString()+"원";
+
+}
+
+function resetAll(){
+
+if(!confirm("입력값을 초기화할까요?")) return;
+
+ids.forEach(id=>{
+localStorage.removeItem(id);
+document.getElementById(id).value="";
+});
+
+document.getElementById("fee").value="0.015";
+document.getElementById("tax").value="0.15";
+
+calc();
+
+}
+
+calc();
+
+</script>
+
+</body>
+</html>
