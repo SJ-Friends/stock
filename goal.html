@@ -1,227 +1,227 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>주식 목표수익 계산기</title>
+<!DOCTYPE html><html class="dark" lang="ko" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">try{
+        try {
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        "colors": {
+                            "primary-fixed-dim": "#4cd6ff",
+                            "tertiary": "#dadce5",
+                            "error-container": "#93000a",
+                            "surface-container-highest": "#293549",
+                            "on-error-container": "#ffdad6",
+                            "on-primary-container": "#00566a",
+                            "secondary": "#ebb2ff",
+                            "surface-variant": "#293549",
+                            "inverse-primary": "#00677f",
+                            "surface-dim": "#071326",
+                            "on-tertiary-fixed": "#191c22",
+                            "primary-container": "#00d1ff",
+                            "outline": "#859399",
+                            "on-primary": "#003543",
+                            "on-secondary-container": "#480064",
+                            "surface-container-lowest": "#030e21",
+                            "background": "#071326",
+                            "on-surface": "#d7e3fd",
+                            "surface-container-high": "#1e2a3e",
+                            "primary": "#a4e6ff",
+                            "on-primary-fixed-variant": "#004e60",
+                            "on-tertiary": "#2e3037",
+                            "on-primary-fixed": "#001f28",
+                            "surface-bright": "#2e3a4e",
+                            "on-tertiary-fixed-variant": "#44474e",
+                            "on-surface-variant": "#bbc9cf",
+                            "on-tertiary-container": "#4c4e56",
+                            "error": "#ffb4ab",
+                            "surface-container": "#142033",
+                            "on-secondary-fixed": "#320047",
+                            "on-background": "#d7e3fd",
+                            "inverse-surface": "#d7e3fd",
+                            "surface-tint": "#4cd6ff",
+                            "inverse-on-surface": "#253145",
+                            "primary-fixed": "#b7eaff",
+                            "surface": "#071326",
+                            "secondary-container": "#ce5dff",
+                            "tertiary-container": "#bec0c9",
+                            "tertiary-fixed": "#e1e2eb",
+                            "on-secondary": "#520071",
+                            "secondary-fixed-dim": "#ebb2ff",
+                            "tertiary-fixed-dim": "#c4c6cf"
+                        },
+                        "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                        },
+                        "spacing": {
+                            "stack-sm": "4px",
+                            "stack-lg": "32px",
+                            "base": "8px",
+                            "container-padding": "24px",
+                            "stack-md": "12px",
+                            "gutter": "16px",
+                            "stack-gap": "16px",
+                            "section-margin": "32px"
+                        },
+                        "fontFamily": {
+                            "sans": ["Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "sans-serif"],
+                            "headline-lg-mobile": ["Pretendard"],
+                            "data-mono": ["Pretendard"],
+                            "body-md": ["Pretendard"],
+                            "display-xl": ["Pretendard"],
+                            "label-sm": ["Pretendard"],
+                            "headline-lg": ["Pretendard"],
+                            "label-bold": ["Pretendard"]
+                        },
+                        "fontSize": {
+                            "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                            "data-mono": ["18px", {"lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                            "display-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.01em", "fontWeight": "800"}],
+                            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                            "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                            "numeric-display": ["18px", {"lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "700"}]
+                        }
+                    },
+                },
+            }
+        } catch (_e) {}
+    }catch(_e){}</script></head><body class="bg-background text-on-background min-h-screen flex flex-col font-sans">
+    <!-- TopNavBar -->
+    
 
-<style>
-*{box-sizing:border-box;}
-body{
-    margin:0;
-    background:#f2f2f7;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
+    <!-- Main Content Area -->
+    <main class="flex-grow pb-12 px-4 relative flex items-center">
+        <div class="max-w-[560px] mx-auto">
+            <!-- Calculator Card -->
+            <div class="glass-card rounded-xl p-container-padding relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary-fixed-dim/50 to-transparent"></div>
+                
+                <div class="flex flex-col items-center gap-1 mb-8"><div class="flex items-center justify-center gap-4 mb-8"><div class="p-3 rounded-full bg-primary/10 border border-primary/20"><span class="material-symbols-outlined text-3xl text-primary-fixed-dim neon-text-glow" style="font-variation-settings: 'FILL' 1;">trending_up</span></div><h1 class="text-headline-lg font-bold text-primary-fixed-dim neon-text-glow uppercase tracking-tight">목표 수익 계산기</h1></div></div>
 
-.container{
-    max-width:480px;
-    margin:auto;
-    padding:20px;
-}
+                <!-- Form-->
+                <div class="space-y-4">
+                    <!-- Purchase Price -->
+                    <div class="space-y-1 group">
+                        <label class="text-label-sm font-bold text-primary-fixed-dim uppercase tracking-wide block ml-1" for="purchase-price">구매단가</label>
+                        <div class="relative">
+                            <input class="w-full h-12 text-right font-sans font-semibold px-4 bg-surface-container-lowest border border-white/10 rounded cyber-input transition-all text-primary-fixed-dim placeholder-white/10" id="purchase-price" placeholder="0" type="number" value="113263">
+                            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-outline font-sans text-xs font-bold opacity-60">KRW</div>
+                        </div>
+                    </div>
+                    <!-- Quantity -->
+                    <div class="space-y-1 group">
+                        <label class="text-label-sm font-bold text-primary-fixed-dim uppercase tracking-wide block ml-1" for="quantity">수량</label>
+                        <div class="relative">
+                            <input class="w-full h-12 text-right font-sans font-semibold px-4 bg-surface-container-lowest border border-white/10 rounded cyber-input transition-all text-primary-fixed-dim placeholder-white/10" id="quantity" placeholder="0" type="number" value="34">
+                            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-outline font-sans text-xs font-bold opacity-60">UNIT</div>
+                        </div>
+                    </div>
+                    <!-- Target Profit -->
+                    <div class="space-y-1 group">
+                        <label class="text-label-sm font-bold text-primary-fixed-dim uppercase tracking-wide block ml-1" for="target-profit">목표수익</label>
+                        <div class="relative">
+                            <input class="w-full h-12 text-right font-sans font-semibold px-4 bg-surface-container-lowest border border-white/10 rounded cyber-input transition-all text-primary-fixed-dim placeholder-white/10" id="target-profit" placeholder="0" type="number" value="100000">
+                            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-outline font-sans text-xs font-bold opacity-60">PROFIT</div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <!-- Sell Commission -->
+                        <div class="space-y-1 group">
+                            <label class="text-label-sm font-bold text-outline uppercase tracking-wide block ml-1" for="sell-commission">매도수수료(%)</label>
+                            <input class="w-full h-12 text-right font-sans font-semibold px-4 bg-surface-container-lowest border border-white/10 rounded cyber-input transition-all text-on-surface placeholder-white/10" id="sell-commission" placeholder="0.015" step="0.001" type="number" value="0.015">
+                        </div>
+                        <!-- Transaction Tax -->
+                        <div class="space-y-1 group">
+                            <label class="text-label-sm font-bold text-outline uppercase tracking-wide block ml-1" for="transaction-tax">거래세(%)</label>
+                            <input class="w-full h-12 text-right font-sans font-semibold px-4 bg-surface-container-lowest border border-white/10 rounded cyber-input transition-all text-on-surface placeholder-white/10" id="transaction-tax" placeholder="0.20" step="0.01" type="number" value="0.15">
+                        </div>
+                    </div>
+                </div>
 
-.card{
-    background:white;
-    border-radius:15px;
-    padding:20px;
-    box-shadow:0 3px 10px rgba(0,0,0,.08);
-}
+                <!-- Results Section -->
+                <div class="mt-8 bg-surface-container-lowest/50 border border-white/5 rounded-lg p-6 space-y-4 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-primary-fixed-dim"></div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-label-sm font-bold text-outline uppercase">수익률</span>
+                        <span class="text-2xl font-bold text-primary-fixed-dim neon-text-glow" id="res-profit-rate">2.60 %</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-label-sm font-bold text-outline uppercase">목표 매도가</span>
+                        <span class="font-bold text-on-surface" id="res-target-sell">116,204원</span>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-white/5 pt-3">
+                        <span class="text-label-sm font-bold text-outline uppercase">세금/수수료 포함</span>
+                        <span class="font-bold text-[#00ff88] drop-shadow-[0_0_8px_rgba(0,255,136,0.4)]" id="res-total-price">116,396원</span>
+                    </div>
+                </div>
 
-h2{
-    text-align:center;
-    margin-top:0;
-}
+                <!-- Action Button -->
+                <button class="w-full mt-6 py-4 ghost-button-cyber text-error font-bold text-sm uppercase tracking-widest rounded-lg flex items-center justify-center gap-2 group" id="reset-btn">
+                    <span class="material-symbols-outlined text-xl group-hover:rotate-180 transition-transform duration-500">restart_alt</span>
+                    <span class="">입력값 초기화</span>
+                </button>
+                <p class="mt-4 text-center text-label-sm font-medium text-outline/50 uppercase tracking-tight text-[10px]">SJ</p>
+            </div>
+        </div>
+    </main>
 
-.row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin:12px 0;
-}
+    <script>
+        const purchasePriceInput = document.getElementById('purchase-price');
+        const quantityInput = document.getElementById('quantity');
+        const targetProfitInput = document.getElementById('target-profit');
+        const sellCommissionInput = document.getElementById('sell-commission');
+        const transactionTaxInput = document.getElementById('transaction-tax');
+        const resetBtn = document.getElementById('reset-btn');
 
-label{
-    width:40%;
-    font-weight:bold;
-}
+        const resProfitRate = document.getElementById('res-profit-rate');
+        const resTargetSell = document.getElementById('res-target-sell');
+        const resTotalPrice = document.getElementById('res-total-price');
 
-input{
-    width:58%;
-    padding:12px;
-    font-size:18px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    text-align:right;
-}
+        function calculate() {
+            const buyPrice = parseFloat(purchasePriceInput.value) || 0;
+            const quantity = parseFloat(quantityInput.value) || 0;
+            const targetProfit = parseFloat(targetProfitInput.value) || 0;
+            const commissionRate = (parseFloat(sellCommissionInput.value) || 0) / 100;
+            const taxRate = (parseFloat(transactionTaxInput.value) || 0) / 100;
 
-.result{
-    background:#FFF9C4;
-    padding:12px;
-    border-radius:10px;
-    margin-top:15px;
-}
+            if (quantity <= 0 || buyPrice <= 0) return;
 
-.result div{
-    display:flex;
-    justify-content:space-between;
-    padding:6px 0;
-    font-size:18px;
-}
+            const totalBuyPrice = buyPrice * quantity;
+            const rawTargetSellPrice = (targetProfit + totalBuyPrice) / quantity;
+            const targetSellPriceWithFees = rawTargetSellPrice / (1 - commissionRate - taxRate);
+            
+            const profitRate = ((targetSellPriceWithFees - buyPrice) / buyPrice) * 100;
 
-button{
-    width:100%;
-    margin-top:20px;
-    padding:14px;
-    border:none;
-    background:#ff3b30;
-    color:white;
-    font-size:18px;
-    border-radius:10px;
-}
+            resProfitRate.innerText = `${profitRate.toFixed(2)} %`;
+            resTargetSell.innerText = `${Math.round(rawTargetSellPrice).toLocaleString()}원`;
+            resTotalPrice.innerText = `${Math.round(targetSellPriceWithFees).toLocaleString()}원`;
 
-.small{
-    font-size:13px;
-    color:#666;
-    text-align:center;
-    margin-top:10px;
-}
-</style>
-</head>
+            localStorage.setItem('calc_data_cyber', JSON.stringify({
+                buyPrice, quantity, targetProfit, commissionRate: commissionRate*100, taxRate: taxRate*100
+            }));
+        }
 
-<body>
+        function resetInputs() {
+            purchasePriceInput.value = '';
+            quantityInput.value = '';
+            targetProfitInput.value = '';
+            sellCommissionInput.value = '0.015';
+            transactionTaxInput.value = '0.15';
+            
+            resProfitRate.innerText = '0.00 %';
+            resTargetSell.innerText = '0원';
+            resTotalPrice.innerText = '0원';
+            
+            localStorage.removeItem('calc_data_cyber');
+        }
 
-<div class="container">
+        [purchasePriceInput, quantityInput, targetProfitInput, sellCommissionInput, transactionTaxInput].forEach(input => {
+            input.addEventListener('input', calculate);
+        });
 
-<div class="card">
+        resetBtn.addEventListener('click', resetInputs);
 
-<h2>📈 목표 수익 계산기</h2>
-
-<div class="row">
-<label>구매단가</label>
-<input id="buyPrice" inputmode="numeric">
-</div>
-
-<div class="row">
-<label>수량</label>
-<input id="qty" inputmode="numeric">
-</div>
-
-<div class="row">
-<label>목표수익</label>
-<input id="profit" inputmode="numeric">
-</div>
-
-<div class="row">
-<label>매도수수료(%)</label>
-<input id="fee" value="0.015">
-</div>
-
-<div class="row">
-<label>거래세(%)</label>
-<input id="tax" value="0.15">
-</div>
-
-<div class="result">
-
-<div>
-<span>수익률</span>
-<b id="rate">0%</b>
-</div>
-
-<div>
-<span>목표 매도가</span>
-<b id="price1">0원</b>
-</div>
-
-<div>
-<span>세금/수수료 포함</span>
-<b id="price2">0원</b>
-</div>
-
-</div>
-
-<button onclick="resetAll()">입력값 초기화</button>
-
-<div class="small">
-입력값은 자동 저장됩니다.
-</div>
-
-</div>
-
-</div>
-
-<script>
-
-const ids=["buyPrice","qty","profit","fee","tax"];
-
-ids.forEach(id=>{
-    const v=localStorage.getItem(id);
-    if(v) document.getElementById(id).value=v;
-
-    document.getElementById(id).addEventListener("input",()=>{
-        save(id);
-        calc();
-    });
-});
-
-function save(id){
-    localStorage.setItem(id,document.getElementById(id).value.replace(/,/g,""));
-}
-
-function num(id){
-    return Number(document.getElementById(id).value.replace(/,/g,""))||0;
-}
-
-function formatInput(e){
-    let v=e.target.value.replace(/,/g,"");
-    if(v=="") return;
-    e.target.value=Number(v).toLocaleString();
-}
-
-["buyPrice","qty","profit"].forEach(id=>{
-    document.getElementById(id).addEventListener("blur",formatInput);
-});
-
-function calc(){
-
-let buy=num("buyPrice");
-let qty=num("qty");
-let profit=num("profit");
-
-let fee=num("fee")/100;
-let tax=num("tax")/100;
-
-if(!buy||!qty)return;
-
-let rate=profit/(buy*qty)*100;
-
-let target=buy+(profit/qty);
-
-let gross=(buy*qty+profit)/(qty*(1-fee-tax));
-
-document.getElementById("rate").innerText=rate.toFixed(2)+" %";
-document.getElementById("price1").innerText=Math.round(target).toLocaleString()+"원";
-document.getElementById("price2").innerText=Math.round(gross).toLocaleString()+"원";
-
-}
-
-function resetAll(){
-
-if(!confirm("입력값을 초기화할까요?")) return;
-
-ids.forEach(id=>{
-localStorage.removeItem(id);
-document.getElementById(id).value="";
-});
-
-document.getElementById("fee").value="0.015";
-document.getElementById("tax").value="0.15";
-
-calc();
-
-}
-
-calc();
-
-</script>
-
-</body>
-</html>
+        window.</script></body></html>
