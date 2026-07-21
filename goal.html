@@ -106,7 +106,7 @@
                     <div class="space-y-1 group">
                         <label class="text-label-sm font-bold text-primary-fixed-dim uppercase tracking-wide block ml-1" for="purchase-price">구매단가</label>
                         <div class="relative">
-                            <input class="w-full h-12 text-right font-sans font-semibold px-4 bg-surface-container-lowest border border-white/10 rounded cyber-input transition-all text-primary-fixed-dim placeholder-white/10" id="purchase-price" placeholder="0" type="number" value="113263">
+                            <input class="w-full h-12 text-right font-sans font-semibold px-4 bg-surface-container-lowest border border-white/10 rounded cyber-input transition-all text-primary-fixed-dim placeholder-white/30" id="purchase-price" placeholder="0" type="number" value="113263">
                             <div class="absolute left-4 top-1/2 -translate-y-1/2 text-outline font-sans text-xs font-bold opacity-60">KRW</div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                     <div class="space-y-1 group">
                         <label class="text-label-sm font-bold text-primary-fixed-dim uppercase tracking-wide block ml-1" for="quantity">수량</label>
                         <div class="relative">
-                            <input class="w-full h-12 text-right font-sans font-semibold px-4 bg-surface-container-lowest border border-white/10 rounded cyber-input transition-all text-primary-fixed-dim placeholder-white/10" id="quantity" placeholder="0" type="number" value="34">
+                            <input class="w-full h-12 text-right font-sans font-semibold px-4 bg-surface-container-lowest border border-white/10 rounded cyber-input transition-all text-primary-fixed-dim placeholder-white/30" id="quantity" placeholder="0" type="number" value="34">
                             <div class="absolute left-4 top-1/2 -translate-y-1/2 text-outline font-sans text-xs font-bold opacity-60">UNIT</div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                     <div class="space-y-1 group">
                         <label class="text-label-sm font-bold text-primary-fixed-dim uppercase tracking-wide block ml-1" for="target-profit">목표수익</label>
                         <div class="relative">
-                            <input class="w-full h-12 text-right font-sans font-semibold px-4 bg-surface-container-lowest border border-white/10 rounded cyber-input transition-all text-primary-fixed-dim placeholder-white/10" id="target-profit" placeholder="0" type="number" value="100000">
+                            <input class="w-full h-12 text-right font-sans font-semibold px-4 bg-surface-container-lowest border border-white/10 rounded cyber-input transition-all text-primary-fixed-dim placeholder-white/30" id="target-profit" placeholder="0" type="number" value="100000">
                             <div class="absolute left-4 top-1/2 -translate-y-1/2 text-outline font-sans text-xs font-bold opacity-60">PROFIT</div>
                         </div>
                     </div>
@@ -180,6 +180,24 @@
         const resTargetSell = document.getElementById('res-target-sell');
         const resTotalPrice = document.getElementById('res-total-price');
 
+        // 클릭(포커스) 시 값을 비우고 기존 값을 연한 placeholder로 보여주는 대상 필드
+        const clearOnFocusInputs = [purchasePriceInput, quantityInput, targetProfitInput];
+
+        clearOnFocusInputs.forEach(input => {
+            input.addEventListener('focus', function () {
+                if (this.value !== '') {
+                    this.placeholder = this.value;
+                    this.value = '';
+                }
+            });
+            // 값을 입력하지 않고 벗어나면 기존 값(placeholder)을 그대로 복원
+            input.addEventListener('blur', function () {
+                if (this.value === '' && this.placeholder && this.placeholder !== '0') {
+                    this.value = this.placeholder;
+                }
+            });
+        });
+
         function calculate() {
             const buyPrice = parseFloat(purchasePriceInput.value) || 0;
             const quantity = parseFloat(quantityInput.value) || 0;
@@ -208,6 +226,9 @@
             purchasePriceInput.value = '';
             quantityInput.value = '';
             targetProfitInput.value = '';
+            purchasePriceInput.placeholder = '0';
+            quantityInput.placeholder = '0';
+            targetProfitInput.placeholder = '0';
             sellCommissionInput.value = '0.015';
             transactionTaxInput.value = '0.15';
             
@@ -224,4 +245,5 @@
 
         resetBtn.addEventListener('click', resetInputs);
 
-        window.</script></body></html>
+        window.onload = calculate;
+    </script></body></html>
